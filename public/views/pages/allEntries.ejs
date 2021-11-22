@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs')  %>
+<h1>Welcome to Teacher Assist</h1>
+
+<h2>See all lessons</h2>
+
+<form method="post" name="searchForm" id="searchForm">
+    <label for="searchByTeacher"> Buscar por professor:
+        <input type="text" name="searchByTeacher" id="searchByTeacher">
+        <button type="submit" form="searchForm">Buscar</button>
+    </label>
+</form>
+<form action="/entries" method="get"> <a href="/entries"><input type="button" value="Mostrar tudo"></a></form>
+<form action="/" method="get"> <a href="/"><input type="button" value="Home"></a></form>
+
+<ol>
+    <% if (lessonsList.length === 0) { %>
+    <ul>
+        <li>No matches found!</li>
+    </ul>
+    <% } %>
+
+    <% if ( typeof(lessonsList) == 'undefined') { %>
+    <li>No matches found!</li>
+    <% } %>
+    <% lessonsList.forEach(element => { %>
+    <form action="/editEntry/<%= element._id %> " method="get">
+        <li>
+            <%=element.date.toLocaleString("pt-BR", {timeZone:"GMT", day: "numeric", month: "numeric", year:"numeric"}) %>
+            <%=element.teacher%>
+            <%=element.content%>
+            <a href="/editEntry/<%=element._id%>"> <button> Edit Entry</button></a>
+        </li>
+    </form>
+
+    <% }) %>
+</ol>
+
+<%- include('../partials/footer.ejs')  %>

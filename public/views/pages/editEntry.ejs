@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs')  %>
+
+<form name="editEntry" method="post">
+    <div class="class-container">
+        <div>
+            <label for="date">Lesson Date: </label> <input type="date" name="date" value="<%=date%>">
+        </div>
+
+        <div>
+            <label for="teacher">Teacher: </label> <input type="text" name="teacher" placeholder="Teacher"
+                value="<%= teacher %> ">
+        </div>
+
+        <div>
+            <label for="content">Content: </label> <input type="text" name="content"
+                placeholder="Descreva o que foi dado em aula" value="<%= content %> ">
+        </div>
+
+    </div>
+    <button type="submit">Save Entry</button>
+</form>
+<form action="/deleteEntry/<%= id %>" name="deleteEntry" method="post">
+    <button type="submit">Delete Entry</button>
+</form>
+<form action="/" method="get"> <a href="/"><input type="button" value="Home"></a></form>
+<%- include('../partials/footer.ejs')  %>

@@ -1,0 +1,27 @@
+{
+  "name": "teacherassist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IdoLongbeard/teacherAssist.git"
+  },
+  "author": "IdoLongbeard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IdoLongbeard/teacherAssist/issues"
+  },
+  "homepage": "https://github.com/IdoLongbeard/teacherAssist#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15"
+  }
+}

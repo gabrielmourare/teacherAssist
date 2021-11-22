@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs')%>
+
+<h1>Welcome to Teacher Assist</h1>
+
+<form name="findAll" action="/entries" method="get">
+    <a href="/entries"><input form="findAll" type="button" value="See all lessons"></a>
+</form>
+
+<form action="/createEntry" method="get">
+    <a href="/createEntry"><input type="button" value="Add Lesson"></a>
+</form>
+
+
+<%- include('../partials/footer')%>
