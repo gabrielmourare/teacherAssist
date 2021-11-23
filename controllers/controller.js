@@ -1,5 +1,9 @@
 //jshint esversion: 6
 const Entry = require('../database/models/entryModel');
+const User = require('../database/models/userModel');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 const index = (req, res) => {
     res.render('../public/views/pages/index.ejs');
@@ -194,6 +198,75 @@ const updateEntry = (req, res) => {
         });
 };
 
+
+const login = (req, res) => {
+    res.render('../public/views/pages/login.ejs');
+};
+
+const register = (req, res) => {
+    res.render('../public/views/pages/register.ejs');
+};
+
+const home = (req, res) => {
+    res.render('../public/views/pages/index.ejs');
+};
+
+const registerUser = (req, res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    bcrypt.hash(password, saltRounds, function (error, hash) {
+        if (!error) {
+            User.create({
+                    email: email,
+                    password: hash
+                })
+
+                .then((user) => {
+                    if (!user) {
+                        res.status(500).send({
+                            message: "Couldn't create user"
+                        });
+                    } else {
+                        res.render('../public/views/pages/success.ejs', {
+                            message: "User successfully created!"
+                        });
+                    }
+                })
+
+                .catch(err => {
+                    res.send(err.message);
+                });
+        }
+    });
+};
+
+
+const loginUser = (req, res) => {
+    var email = req.body.email;
+    User.findOne({
+            email: email
+        })
+
+        .then((user) => {
+            if (user) {
+                bcrypt.compare(req.body.password, user.password, function (err, result) {
+                    if (result === true) {
+                        res.render('../public/views/pages/index.ejs');
+                    } else {
+                        res.render('../public/views/pages/success.ejs', {
+                            title: "Failure",
+                            message: "Sorry, wrong password or username. Try again"
+                        });
+                    }
+                });
+            }
+        })
+
+        .catch(err => {
+            res.status(404).send(err.message);
+        });
+};
 module.exports = {
     index,
     findAll,
@@ -202,5 +275,10 @@ module.exports = {
     create_get,
     create_post,
     deleteEntry,
-    updateEntry
+    updateEntry,
+    login,
+    register,
+    home,
+    registerUser,
+    loginUser
 };
