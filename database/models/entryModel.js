@@ -12,7 +12,10 @@ const schema = new mongoose.Schema({
     updateDate: String
 });
 
-schema.index({teacher:"text", date: "text"});
+schema.index({
+    teacher: "text",
+    date: "text"
+});
 
 const Entry = mongoose.model('Entry', schema);
 

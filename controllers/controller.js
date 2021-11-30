@@ -9,61 +9,6 @@ const index = (req, res) => {
     res.render('../public/views/pages/index.ejs');
 };
 
-const findAll = (req, res) => {
-    Entry.find({})
-        .then((entries) => {
-            if (!entries) {
-                res.status(404).send({
-                    message: "Something went wrong."
-                });
-            } else {
-                res.render('../public/views/pages/allEntries.ejs', {
-                    lessonsList: entries
-                });
-            }
-        })
-
-        .catch(err => {
-            res.status(500).send({
-                message: "Something went wrong"
-            });
-        });
-};
-
-const create_get = (req, res) => {
-    res.render('../public/views/pages/createEntry.ejs');
-};
-
-const renderEntry = (req, res) => {
-    var id = req.params.id;
-
-    Entry.findById({
-            _id: id
-        })
-        .then((entry) => {
-            if (!entry) {
-                res.status(404).send({
-                    message: "Couldn't save updates. Please try again."
-                });
-            } else {
-
-                res.render('../public/views/pages/editEntry.ejs', {
-                    id: entry._id,
-                    date: entry.date,
-                    teacher: entry.teacher,
-                    content: entry.content
-                });
-            }
-
-        })
-
-        .catch(err => {
-            res.status(500).send({
-                message: "Something went wrong."
-            });
-        });
-};
-
 const findOne = (req, res) => {
     var searchField = req.body.searchByTeacher;
 
@@ -121,6 +66,7 @@ const create_post = (req, res) => {
                 });
             } else {
                 res.render('../public/views/pages/success.ejs', {
+                    title: 'Success!',
                     message: 'Entry successfully created!'
                 });
             }
@@ -145,6 +91,7 @@ const deleteEntry = (req, res) => {
                 });
             } else {
                 res.render('../public/views/pages/success.ejs', {
+                    title: 'Sucess!',
                     message: 'Entry successfully deleted!'
                 });
             }
@@ -187,6 +134,7 @@ const updateEntry = (req, res) => {
                 });
             } else {
                 res.render('../public/views/pages/success.ejs', {
+                    title: 'Success!',
                     message: 'Entry successfully updated!'
                 });
             }
@@ -199,17 +147,10 @@ const updateEntry = (req, res) => {
 };
 
 
-const login = (req, res) => {
-    res.render('../public/views/pages/login.ejs');
-};
 
-const register = (req, res) => {
-    res.render('../public/views/pages/register.ejs');
-};
 
-const home = (req, res) => {
-    res.render('../public/views/pages/index.ejs');
-};
+
+
 
 const registerUser = (req, res) => {
     var email = req.body.email;
@@ -268,17 +209,11 @@ const loginUser = (req, res) => {
         });
 };
 module.exports = {
-    index,
-    findAll,
-    findOne,
-    renderEntry,
-    create_get,
+    loginUser,
     create_post,
-    deleteEntry,
+    findOne,
+    index,
     updateEntry,
-    login,
-    register,
-    home,
     registerUser,
-    loginUser
+    deleteEntry
 };

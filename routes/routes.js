@@ -2,21 +2,27 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/controller');
+const findAllEntries = require('../controllers/get/entries');
+const renderRegister = require('../controllers/get/register');
+const renderLogin = require('../controllers/get/login');
+const renderHome = require('../controllers/get/home');
+const renderCreateEntry  = require('../controllers/get/createEntry');
+const renderEditEntry = require('../controllers/get/editEntry');
 
 //GET ROUTES
-router.get('/register', controller.register);
+router.get('/register', renderRegister);
 
-router.get('/login', controller.login);
+router.get('/login', renderLogin);
 
-router.get('/home', controller.home);
+router.get('/home', renderHome);
 
-router.get('/', controller.login);
+router.get('/', renderLogin);
 
-router.get('/entries', controller.findAll);
+router.get('/entries', findAllEntries);
 
-router.get('/createEntry', controller.create_get);
+router.get('/createEntry', renderCreateEntry);
 
-router.get('/editEntry/:id', controller.renderEntry);
+router.get('/editEntry/:id', renderEditEntry);
 
 //POST ROUTES
 router.post('/register', controller.registerUser);
