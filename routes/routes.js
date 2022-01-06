@@ -1,42 +1,60 @@
 //jshint esversion: 6
+
+//GENERAL DEPENDENCIES
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/controller');
+const passport = require('passport');
+
+//GET DEPENDENCIES
 const findAllEntries = require('../controllers/get/entries');
 const renderRegister = require('../controllers/get/register');
 const renderLogin = require('../controllers/get/login');
 const renderHome = require('../controllers/get/home');
-const renderCreateEntry  = require('../controllers/get/createEntry');
+const renderCreateEntry = require('../controllers/get/createEntry');
 const renderEditEntry = require('../controllers/get/editEntry');
+
+//POST DEPENDENCIES
+const searchEntry = require('../controllers/post/searchEntry');
+const createEntry = require('../controllers/post/createEntry');
+const deleteEntry = require('../controllers/post/deleteEntry');
+const updateEntry = require('../controllers/post/updateEntry');
+
+//REGISTER AND LOGIN AND LOGOUT DEPENDENCIES
+const register = require('../controllers/post/register');
+const login = require('../controllers/post/login');
+const logout = require('../controllers/post/logout');
+const checkUserLoggedIn = require('../controllers/checkUserLoggedIn');
 
 //GET ROUTES
 router.get('/register', renderRegister);
 
 router.get('/login', renderLogin);
 
-router.get('/home', renderHome);
+router.get('/home', checkUserLoggedIn, renderHome);
 
 router.get('/', renderLogin);
 
-router.get('/entries', findAllEntries);
+router.get('/entries', checkUserLoggedIn, findAllEntries);
 
-router.get('/createEntry', renderCreateEntry);
+router.get('/createEntry', checkUserLoggedIn, renderCreateEntry);
 
-router.get('/editEntry/:id', renderEditEntry);
+router.get('/editEntry/:id', checkUserLoggedIn, renderEditEntry);
 
 //POST ROUTES
-router.post('/register', controller.registerUser);
+router.post('/register', register);
 
-router.post('/', controller.loginUser);
+router.post('/', login);
 
-router.post('/login', controller.loginUser);
+router.post('/login', passport.authenticate('local'), login);
 
-router.post('/entries', controller.findOne);
+router.post('/entries', checkUserLoggedIn, searchEntry);
 
-router.post('/createEntry', controller.create_post);
+router.post('/createEntry', checkUserLoggedIn, createEntry);
 
-router.post('/deleteEntry/:id', controller.deleteEntry);
+router.post('/deleteEntry/:id', checkUserLoggedIn, deleteEntry);
 
-router.post('/editEntry/:id', controller.updateEntry);
+router.post('/editEntry/:id', checkUserLoggedIn, updateEntry);
+
+router.post('/logout', logout);
 
 module.exports = router;

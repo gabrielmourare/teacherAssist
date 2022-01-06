@@ -11,15 +11,20 @@
         </div>
 
         <div>
-            <label for="content">Content: </label> <input type="text" name="content"
-                placeholder="Descreva o que foi dado em aula">
+            <label for="content">Content: </label>
+            <div>
+                <textarea class="content" rows="10" style="resize: none;" type="text" name="content"
+                    placeholder="Describe lesson content"></textarea>
+            </div>
         </div>
-
     </div>
 
-    <button type="submit">Salvar Aula</button>
+    <button class="btn btn-primary" type="submit">Save Lesson</button>
 </form>
-<form action="/home" method="get"> <a href="/home"><input type="button" value="Home"></a></form>
+
+<form class="homeButton" action="/home" method="get"> <a href="/home"><input class="btn btn-primary" type="button"
+            value="Home"></a>
+</form>
 
 
 <%- include('../partials/footer.ejs')  %>

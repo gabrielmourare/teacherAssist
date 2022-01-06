@@ -1,0 +1,30 @@
+footer {
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.container {
+    border-radius: 1em;
+    padding: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.homeButton {
+    padding-top: 1%;
+    position: static;
+    text-align: left;
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+}

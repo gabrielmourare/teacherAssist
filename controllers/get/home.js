@@ -2,8 +2,9 @@
 const express = require('express');
 
 const home = (req, res) => {
-    res.render('../public/views/pages/index.ejs');
+
+    res.render('../public/views/pages/home.ejs');
+
 };
 
 module.exports = home;
-

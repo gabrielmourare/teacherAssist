@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs')%>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <h1>TeacherAssist</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <form name="findAll" action="/entries" method="get">
+                    <a class="nav-link" href="/entries"><input class="btn btn-primary" form="findAll" type="button"
+                            value="See all lessons"></a>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form action="/createEntry" method="get">
+                    <a class="nav-link" href="/createEntry"><input class="btn btn-primary" type="button"
+                            value="Add Lesson"></a>
+                </form>
+            </li>
+            <li class="nav-item">
+                <form action="/logout" method="post">
+                    <a class="nav-item nav-link"><input class="btn btn-primary" type="submit" value="Logout"
+                            class="btn btn-primary"></a>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+</nav>
+<%- include('../partials/footer')%>
