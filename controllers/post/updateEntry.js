@@ -32,7 +32,8 @@ const updateEntry = (req, res) => {
             } else {
                 res.render('../public/views/pages/success.ejs', {
                     title: 'Success!',
-                    message: 'Entry successfully updated!'
+                    message: 'Entry successfully updated!',
+                    previousPage: 'editEntry/' + id
                 });
             }
         })

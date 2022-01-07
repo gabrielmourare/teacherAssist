@@ -24,6 +24,8 @@ const register = require('../controllers/post/register');
 const login = require('../controllers/post/login');
 const logout = require('../controllers/post/logout');
 const checkUserLoggedIn = require('../controllers/checkUserLoggedIn');
+const checkData = require('../controllers/checkData');
+const checkPassword = require('../controllers/checkPasswordRegister');
 
 //GET ROUTES
 router.get('/register', renderRegister);
@@ -41,7 +43,7 @@ router.get('/createEntry', checkUserLoggedIn, renderCreateEntry);
 router.get('/editEntry/:id', checkUserLoggedIn, renderEditEntry);
 
 //POST ROUTES
-router.post('/register', register);
+router.post('/register', checkPassword, register);
 
 router.post('/', login);
 
@@ -49,11 +51,11 @@ router.post('/login', passport.authenticate('local'), login);
 
 router.post('/entries', checkUserLoggedIn, searchEntry);
 
-router.post('/createEntry', checkUserLoggedIn, createEntry);
+router.post('/createEntry', checkUserLoggedIn, checkData, createEntry);
 
 router.post('/deleteEntry/:id', checkUserLoggedIn, deleteEntry);
 
-router.post('/editEntry/:id', checkUserLoggedIn, updateEntry);
+router.post('/editEntry/:id', checkUserLoggedIn, checkData, updateEntry);
 
 router.post('/logout', logout);
 

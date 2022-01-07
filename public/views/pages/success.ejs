@@ -2,12 +2,13 @@
 <h1><%= title %></h1>
 <%= message %>
 
-<p>You are being redirected, please wait 2 seconds. If you are not redirected, <a href="/home">click here</a></p>
+<p>You are being redirected, please wait 2 seconds. If you are not redirected, <a href="/<%=previousPage%>">click
+        here</a></p>
 <script>
     setTimeout(function () {
         // after 2 seconds
-        window.location = "/home";
-    }, 3000)
+        window.location = "/<%=previousPage%>";
+    }, 1500)
 </script>
 
 <%- include('../partials/footer.ejs')  %>

@@ -31,7 +31,8 @@ const registerUser = (req, res) => {
                                 } else {
                                     res.render('../public/views/pages/success.ejs', {
                                         title: "Success!",
-                                        message: "User successfully created!"
+                                        message: "User successfully created!",
+                                        previousPage: "login"
                                     });
                                 }
                             })
@@ -45,7 +46,8 @@ const registerUser = (req, res) => {
             } else {
                 res.render('../public/views/pages/success.ejs', {
                     title: "FAILURE",
-                    message: "User already exists."
+                    message: "User already exists.",
+                    previousPage: "register"
                 });
             }
         })
