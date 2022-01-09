@@ -32,21 +32,24 @@ const createEntry = (req, res) => {
                 });
             } else {
                 User.findByIdAndUpdate(
-                    id,
-                {$push: {entries: entry._id }})
-                .then((user) =>{
-                    console.log(user)
-                    res.render('../public/views/pages/success.ejs', {
-                        title: 'Success!',
-                        message: 'Entry successfully created!',
-                        previousPage: 'entries'
+                        id, {
+                            $push: {
+                                entries: entry
+                            }
+                        })
+                    .then((user) => {
+                        console.log(user);
+                        res.render('../public/views/pages/success.ejs', {
+                            title: 'Success!',
+                            message: 'Entry successfully created!',
+                            previousPage: 'entries'
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
                     });
-                })
-                .catch(err => {
-                    console.log(err);
-                });
 
-                
+
             }
         })
 

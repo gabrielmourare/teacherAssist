@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-    
+
     email: {
         type: String,
         unique: true,
@@ -16,7 +16,10 @@ const schema = new mongoose.Schema({
     dateOfBirth: Date,
     bio: String,
     subjects: [],
-    entries: [{type: mongoose.Schema.Types.ObjectId, ref: 'Entry'}]
+    entries: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Entry'
+    }
 
 });
 

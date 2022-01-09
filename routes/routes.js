@@ -45,7 +45,7 @@ router.get('/editEntry/:id', checkUserLoggedIn, renderEditEntry);
 //POST ROUTES
 router.post('/register', checkPassword, register);
 
-router.post('/', login);
+router.post('/',passport.authenticate('local'), login);
 
 router.post('/login', passport.authenticate('local'), login);
 

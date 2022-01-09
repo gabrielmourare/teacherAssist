@@ -4,6 +4,7 @@ const User = require('../../database/models/userModel');
 
 const deleteEntry = (req, res) => {
 
+
     Entry.findByIdAndDelete({
             _id: req.params.id
         })
@@ -13,18 +14,10 @@ const deleteEntry = (req, res) => {
                     message: "Couldn't find entry. Already deleted or it doesn't exist."
                 });
             } else {
-                console.log(req.user);
-                User.findByIdAndUpdate(req.user.id, {
-                        $pull: {
-                            entries: {
-                                _id: entry._id
-                            }
-                        }
-                    })
-
-                    .then(user => {
-                        console.log(user.entries);
-                    });
+                User.remove({
+                    entries: entry
+                });
+                console.log(entry)
                 res.render('../public/views/pages/success.ejs', {
                     title: 'Sucess!',
                     message: 'Entry successfully deleted!',
