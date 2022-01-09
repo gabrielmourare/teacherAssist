@@ -34,7 +34,7 @@ router.get('/login', renderLogin);
 
 router.get('/home', checkUserLoggedIn, renderHome);
 
-router.get('/', renderLogin);
+router.get('/',checkUserLoggedIn, renderLogin);
 
 router.get('/entries', checkUserLoggedIn, findAllEntries);
 

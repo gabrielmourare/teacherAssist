@@ -10,6 +10,5 @@ const loginUser = (req, res, next) => {
         successFlash: true
     })(req, res, next);
 
-
 };
 module.exports = loginUser;
