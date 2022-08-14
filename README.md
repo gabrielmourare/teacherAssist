@@ -8,3 +8,5 @@ What have I learned?
 * CRUD operations with Node.js
 * Creation of API's REST using Node.js.
 * A little understanding of Objects, Instances and Methods.
+* User Authentication using Tokens.
+* Setting up servers with Nodejs.
